@@ -1,11 +1,13 @@
+import '../style/Grid.css';
+
+
 const Cell = ({num}) =>{
 
     //some useeffect
     return(
-        <>
-            <p>cell</p>
+        <div className='node'>
             <p>num</p>
-        </>
+        </div>
     )
 }
 
