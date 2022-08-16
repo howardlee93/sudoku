@@ -12,8 +12,9 @@ const Board = () =>{
     const createGrid = ()=>{
         const grid = [];
         for (let row = 0; row < 9; row ++){
-            let currRow = [];
+            const currRow = [];
             for (let col = 0; col < 9; col++){
+                // let newNode = 1;
                 currRow.push(1);
             }
             grid.push(currRow);
@@ -23,12 +24,23 @@ const Board = () =>{
 
     return(
         <div>
-        {createGrid().map((num, index)=>(
-            <Cell key={index} num={num}/>
-        ))}
+
+        {createGrid().map((row, rowInd)=>(
+            <div id={rowInd}>
+                {row.map((num, ind)=>(
+                    <Cell key={ind} num={num}/>
+                ))}
+            </div>
+            )
+        )}
+            
+
+
+
         </div>
     )
     
 }
 
 export default Board;
+
