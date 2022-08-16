@@ -8,7 +8,7 @@ const Board = () =>{
         for (let row = 0; row < 9; row ++){
             const currRow = [];
             for (let col = 0; col < 9; col++){
-                currRow.push(1);
+                currRow.push(row*col);
             }
             grid.push(currRow);
         };

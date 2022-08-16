@@ -6,7 +6,7 @@ const Cell = ({num}) =>{
     //some useeffect
     return(
         <div className='node'>
-            <p>num</p>
+            <p>{num}</p>
         </div>
     )
 }
