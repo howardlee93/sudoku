@@ -1,4 +1,4 @@
-function sudoku(grid) {
+function validate(grid) {
 
     let rows = [];
     let cols = [];

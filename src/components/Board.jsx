@@ -1,14 +1,16 @@
 import Cell from './Cell';
 import '../style/Grid.css';
+import test from '../util/generate';
 
 const Board = () =>{
 
-    const createGrid = ()=>{
+    const createGrid = (test)=>{
         const grid = [];
         for (let row = 0; row < 9; row ++){
             const currRow = [];
             for (let col = 0; col < 9; col++){
-                currRow.push(row*col);
+                // currRow.push(" ");
+                currRow.push(test[row][col])
             }
             grid.push(currRow);
         };
@@ -18,8 +20,8 @@ const Board = () =>{
     return(
         <div>
 
-        {createGrid().map((row, rowInd)=>(
-            <div id={rowInd}>
+        {createGrid(test).map((row, rowInd)=>(
+            <div key={rowInd}>
                 {row.map((num, ind)=>(
                     <Cell key={ind} num={num}/>
                 ))}
