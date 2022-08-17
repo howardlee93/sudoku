@@ -8,4 +8,16 @@ const test = [[1, 3, 2, 5, 4, 6, 9, 8, 7],
         [2, 4, 3, 6, 5, 7, 1, 9, 8],
         [8, 1, 9, 3, 2, 4, 7, 6, 5]];
 
+
+const game = [];        
+const level = ['easy', 'medium', 'difficult'];
+
+
+function generate(level){
+
+}
+
+
+
+
 export default test;
