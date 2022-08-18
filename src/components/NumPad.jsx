@@ -1,8 +1,21 @@
+import { useEffect } from 'react';
+import Num from './Num';
+
 
 
 const NumPad = () =>{
   
     //onenter
+
+    function onClick(value){
+        console.log(value);
+    }
+
+    //event listeners here
+
+    useEffect(()=>{
+        
+    },[])
 
 
     return (
@@ -10,7 +23,7 @@ const NumPad = () =>{
         <div className="flex justify-center mb-1">
         {[1,2,3].map((num) => {
             return(
-                <p key={num}>{num}</p>
+                <Num key={num} num={num}  onClick={onClick} />
             )
         })}
         </div>
@@ -18,14 +31,14 @@ const NumPad = () =>{
        <div className="flex justify-center mb-1">
         {[4,5,6].map((num) => {
             return(
-                <p key={num}>{num}</p>
+                <Num key={num} num={num} onClick={onClick}/>
             )
         })}
         </div>
 
         <div className="flex justify-center mb-1">{[7,8,9].map((num) => {
             return(
-                <p key={num}>{num}</p>
+                <Num key={num} num={num}  onClick={onClick}/>
             )
         })}
         </div>
