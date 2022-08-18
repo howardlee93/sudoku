@@ -12,13 +12,18 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="mt-1 text-lg font-semibold" onClick={()=>setOpen(!open)}>Sudoku</h1>
-      <p onClick={()=>setOpen(!open)}> Instructions</p>
-      <Modal open={open} onClick={()=>setOpen(!open)}/>
-      <Options/>
-     <Board/>
-     <NumPad/>
-     <Footer/>
+      <header>
+        <h1 className="mt-1 text-lg font-semibold" onClick={()=>setOpen(!open)}>Sudoku</h1>
+        <p onClick={()=>setOpen(!open)}> Instructions</p>
+        <Modal open={open} onClick={()=>setOpen(!open)}/>
+        <Options/>
+      </header>
+
+      <main className="flex justify-center">
+        <Board/>
+        <NumPad/>
+      </main>
+      <Footer/>
     </div>
   );
 }

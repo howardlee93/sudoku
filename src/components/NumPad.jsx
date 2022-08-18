@@ -19,31 +19,31 @@ const NumPad = () =>{
 
 
     return (
-        <>
-        <div className="flex justify-center mb-1">
-        {[1,2,3].map((num) => {
-            return(
-                <Num key={num} num={num}  onClick={onClick} />
-            )
-        })}
-        </div>
+        <div className='float-root grid grid-rows-3 gap-1'>
+            <div className="flex justify-center grid grid-cols-3 gap-1">
+            {[1,2,3].map((num) => {
+                return(
+                    <Num key={num} num={num} onClick={onClick} />
+                )
+            })}
+            </div>
 
-       <div className="flex justify-center mb-1">
-        {[4,5,6].map((num) => {
-            return(
-                <Num key={num} num={num} onClick={onClick}/>
-            )
-        })}
-        </div>
+            <div className="flex justify-center grid grid-cols-3 gap-1">
+            {[4,5,6].map((num) => {
+                return(
+                    <Num key={num} num={num} onClick={onClick}/>
+                )
+            })}
+            </div>
 
-        <div className="flex justify-center mb-1">{[7,8,9].map((num) => {
-            return(
-                <Num key={num} num={num}  onClick={onClick}/>
-            )
-        })}
-        </div>
-
-       </>
+            <div className="flex justify-center grid grid-cols-3 gap-1">
+                {[7,8,9].map((num) => {
+                    return(
+                        <Num key={num} num={num}  onClick={onClick}/>
+                )
+            })}
+            </div>
+       </div>
 
     )
 };

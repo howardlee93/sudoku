@@ -9,8 +9,8 @@ const Board = () =>{
         for (let row = 0; row < 9; row ++){
             const currRow = [];
             for (let col = 0; col < 9; col++){
-                currRow.push(" ");
-                // currRow.push(test[row][col])
+                // currRow.push(" ");
+                currRow.push(test[row][col])
             }
             grid.push(currRow);
         };
@@ -18,9 +18,9 @@ const Board = () =>{
     };
 
     return(
-        <div>
+        <div className='float-root'>
 
-        {createGrid().map((row, rowInd)=>(
+        {createGrid(test).map((row, rowInd)=>(
             <div key={rowInd}>
                 {row.map((num, ind)=>(
                     <Cell key={ind} num={num}/>
