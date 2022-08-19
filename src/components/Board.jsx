@@ -7,13 +7,13 @@ const Board = () =>{
 
     const [selected, setSelected] = useState("");
 
-    const createGrid = (test)=>{
+    const createGrid = (game)=>{
         const grid = [];
         for (let row = 0; row < 9; row ++){
             const currRow = [];
             for (let col = 0; col < 9; col++){
                 // currRow.push(" ");
-                currRow.push(test[row][col])
+                currRow.push(game[row][col])
             }
             grid.push(currRow);
         };
@@ -36,12 +36,13 @@ const Board = () =>{
         // }
     }
     return(
-        <div className='float-root'>
-
+        <div className='float-root grid grid-rows-9'>
         {createGrid(test).map((row, rowInd)=>(
-            <div key={rowInd}>
+            <div key={rowInd} className='grid grid-cols-9'> 
                 {row.map((num, ind)=>(
-                    <Cell key={ind} num={num} onClick={(num)=> handleSelectedCell(num)}/>
+                    <div key={ind}>
+                    <Cell  num={num} onClick={(num)=> handleSelectedCell(num)}/>
+                    </div>
                 ))}
             </div>
             )
