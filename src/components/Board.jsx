@@ -20,11 +20,9 @@ const Board = () =>{
         return grid;
     };
 
-    const handleSelectedCell = (cell) =>{
-
+    const handleSelectedCell = ( cell) =>{
         const value = cell === "" ? null : parseInt(cell, 10);
-        console.log(value);
-
+        console.log(cell);
         // switch(value){
         //     case value === ".":
         //         //enter num
@@ -40,9 +38,7 @@ const Board = () =>{
         {createGrid(test).map((row, rowInd)=>(
             <div key={rowInd} className='grid grid-cols-9'> 
                 {row.map((num, ind)=>(
-                    <div key={ind}>
-                    <Cell  num={num} onClick={(num)=> handleSelectedCell(num)}/>
-                    </div>
+                    <Cell key={ind} num={num} handleSelectedCell={handleSelectedCell}/>
                 ))}
             </div>
             )

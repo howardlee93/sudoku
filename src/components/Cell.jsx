@@ -1,7 +1,8 @@
 import '../style/Grid.css';
 
 
-const Cell = ({num, status}) =>{
+const Cell = ({num, status, handleSelectedCell}) =>{
+
 
     // switch(charStatus){
     //     case 'correct':
@@ -20,7 +21,7 @@ const Cell = ({num, status}) =>{
 
     return(
         <div className='node'>
-            <p>{num}</p>
+            <input type="text" size="1" value={num} onChange={()=>handleSelectedCell(num)}/>
         </div>
     )
 }

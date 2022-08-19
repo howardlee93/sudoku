@@ -1,6 +1,6 @@
 const Num =(props) =>{
     const onClick = (e) => {
-        props.onClick(props.num);
+        props.handleOnClick(props.num);
     };
     
     return(
