@@ -18,8 +18,12 @@ const NumPad = () =>{
     },[])
 
 
+    const onEnter =(e)=>{
+
+    }
+
     return (
-        <div className='float-root grid grid-rows-3 gap-1'>
+        <div className='float-root '>
             <div className="flex justify-center grid grid-cols-3 gap-1">
             {[1,2,3].map((num) => {
                 return(
