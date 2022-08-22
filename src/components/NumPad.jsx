@@ -15,7 +15,7 @@ const NumPad = () =>{
 
     useEffect(()=>{
         window.addEventListener("keydown", event=>{
-            console.log(event);
+            console.log(event.key);
         });
 
         //
@@ -36,7 +36,7 @@ const NumPad = () =>{
             <div className="flex justify-center grid grid-cols-3 gap-1">
             {[1,2,3].map((num) => {
                 return(
-                    <Num key={num} num={num} onClick={handleOnClick} />
+                    <Num key={num} num={num} handleOnClick={handleOnClick} />
                 )
             })}
             </div>
@@ -44,7 +44,7 @@ const NumPad = () =>{
             <div className="flex justify-center grid grid-cols-3 gap-1">
             {[4,5,6].map((num) => {
                 return(
-                    <Num key={num} num={num} onClick={handleOnClick}/>
+                    <Num key={num} num={num} handleOnClick={handleOnClick}/>
                 )
             })}
             </div>
@@ -52,7 +52,7 @@ const NumPad = () =>{
             <div className="flex justify-center grid grid-cols-3 gap-1">
                 {[7,8,9].map((num) => {
                     return(
-                        <Num key={num} num={num}  onClick={handleOnClick}/>
+                        <Num key={num} num={num}  handleOnClick={handleOnClick}/>
                 )
             })}
             </div>
