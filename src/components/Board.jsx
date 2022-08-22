@@ -38,7 +38,7 @@ const Board = () =>{
         {createGrid(test).map((row, rowInd)=>(
             <div key={rowInd} className='grid grid-cols-9'> 
                 {row.map((num, ind)=>(
-                    <Cell key={ind} num={num} handleSelectedCell={handleSelectedCell}/>
+                    <Cell key={ind} rowInd={rowInd} colInd={ind} num={num} handleSelectedCell={handleSelectedCell}/>
                 ))}
             </div>
             )

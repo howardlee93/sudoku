@@ -14,7 +14,16 @@ const NumPad = () =>{
     //event listeners here
 
     useEffect(()=>{
-        
+        window.addEventListener("keydown", event=>{
+            console.log(event);
+        });
+
+        //
+        return ()=>( 
+            window.removeEventListener("keyup", event =>{
+                console.log('removed!');
+            })
+        )
     },[])
 
 
