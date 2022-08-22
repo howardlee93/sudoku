@@ -14,15 +14,22 @@ const NumPad = () =>{
     //event listeners here
 
     useEffect(()=>{
-        window.addEventListener("keydown", event=>{
-            console.log(event.key);
-        });
 
-        //
-        return ()=>( 
-            window.removeEventListener("keyup", event =>{
-                console.log('removed!');
-            })
+        const eventListener = (event) =>{
+            event.preventDefault();
+            let key = parseInt(event.key);
+            if (isNaN(key)){
+                console.log('this is not a number');
+                console.log(event.key);
+            }else{
+                console.log(event.key);
+            }
+        }
+        document.addEventListener("keyup", eventListener);
+
+        //unsubscribe
+        return ()=> ( 
+            document.removeEventListener("keyup", eventListener)
         )
     },[])
 
