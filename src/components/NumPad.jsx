@@ -2,11 +2,8 @@ import { useEffect } from 'react';
 import Num from './Num';
 
 
-const NumPad = () =>{
+const NumPad = (props) =>{
   
-    function handleOnClick(value){
-        console.log(value);
-    }
     //event listeners here
 
 
@@ -19,7 +16,7 @@ const NumPad = () =>{
             <div className="flex justify-center grid grid-cols-3 gap-1">
             {[1,2,3].map((num) => {
                 return(
-                    <Num key={num} num={num} handleOnClick={handleOnClick} />
+                    <Num key={num} num={num} handleOnClick={props.handleOnClick} />
                 )
             })}
             </div>
@@ -27,7 +24,7 @@ const NumPad = () =>{
             <div className="flex justify-center grid grid-cols-3 gap-1">
             {[4,5,6].map((num) => {
                 return(
-                    <Num key={num} num={num} handleOnClick={handleOnClick}/>
+                    <Num key={num} num={num} handleOnClick={props.handleOnClick}/>
                 )
             })}
             </div>
@@ -35,7 +32,7 @@ const NumPad = () =>{
             <div className="flex justify-center grid grid-cols-3 gap-1">
                 {[7,8,9].map((num) => {
                     return(
-                        <Num key={num} num={num}  handleOnClick={handleOnClick}/>
+                        <Num key={num} num={num}  handleOnClick={props.handleOnClick}/>
                 )
             })}
             </div>

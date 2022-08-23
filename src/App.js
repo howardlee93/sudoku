@@ -6,17 +6,31 @@ import Options from './components/Options';
 import Modal from './components/Modal';
 import NumPad from './components/NumPad';
 
-
 import test from './util/generate';
-import empty from './util/generate'
+import empty from './util/generate';
+
+const initialState = {
+  selectedBoardVal: null,
+  values: {},
+  currentInput:'',
+  board: empty,
+  done: false,
+  selectedRowIndex: null,
+  selectedColIndex: null,
+}
 
 function App() {
 
   const [open, setOpen] = useState(false);
-  const [game, setGame] = useState(empty);
-  const [input, setInput] = useState("");
+  const [game, setGame] = useState(initialState.board);
+  const [input, setInput] = useState(initialState.currentInput);
+  const [selected, setSelected] = useState({
+    posVal: initialState.selectedBoardVal,
+    row: initialState.selectedRowIndex,
+    col: initialState.selectedColIndex
+  });
 
-  useEffect(()=>{
+  useEffect(()=>{ 
 
     const eventListener = (event) =>{
         event.preventDefault();
@@ -25,9 +39,17 @@ function App() {
             console.log('this is not a number');
             console.log(event.key);
         }else{
-            console.log(event.key);
-            setInput(event.key);
-
+            console.log(event.key, game.slice()[selected.row][selected.col]);
+            setInput(event.key)
+            // .then(()=>{
+            //   if (input){
+                let newBoard = game.slice();
+                selected.posVal = input;
+                newBoard[selected.row][selected.col] = event.key;
+                setGame(newBoard);
+                console.log(game);
+              // }
+            // }); //switch to async
         }
     }
     document.addEventListener("keyup", eventListener);
@@ -36,8 +58,26 @@ function App() {
     return ()=> ( 
         document.removeEventListener("keyup", eventListener)
     )
-},[]);
+  },[game, selected, input]);
 
+  const handleSelectedCell = ( cell, row, col) =>{
+    console.log(game[row][col], row, col);
+    setSelected({
+      posVal:  game[row][col],
+      row: row,
+      col: col
+    })
+      console.log(selected);
+    };
+
+  const handleOnClick =(val) =>{
+    console.log(val);
+    setInput(val);
+    let newBoard = game.slice();
+    selected.posVal = input;
+    newBoard[selected.row][selected.col] = val;
+    setGame(newBoard);
+  }
 
   return (
     <div className="App">
@@ -49,8 +89,8 @@ function App() {
       </header>
 
       <main className="flex justify-center">
-        <Board game={game} inputCell={input} />
-        <NumPad/>
+        <Board game={game} inputCell={input} handleSelectedCell={handleSelectedCell} />
+        <NumPad handleOnClick={handleOnClick}/>
       </main>
       <Footer/>
     </div>
