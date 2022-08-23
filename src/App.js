@@ -39,15 +39,6 @@ function App() {
 },[]);
 
 
-  const handleSelectedCell = ( cell, row, col) =>{
-    const value = cell === "" ? null : parseInt(cell, 10);
-  // console.log(cell);
-    console.log(game[row][col], row, col);
-  //update cell 
-  };
-
-
-
   return (
     <div className="App">
       <header>
@@ -58,7 +49,7 @@ function App() {
       </header>
 
       <main className="flex justify-center">
-        <Board game={game} inputCell={input} handleSelectedCell={handleSelectedCell}/>
+        <Board game={game} inputCell={input} />
         <NumPad/>
       </main>
       <Footer/>

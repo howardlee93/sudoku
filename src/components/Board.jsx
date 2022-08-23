@@ -20,16 +20,20 @@ const Board = (props) =>{
         return grid;
     };
 
-    // useEffect(()=>{
-    //     setGame(empty);
-    // },[])
+
+    const handleSelectedCell = ( cell, row, col) =>{
+        const value = cell === "" ? null : parseInt(cell, 10);
+    // console.log(cell);
+        console.log(game[row][col], row, col);
+    //update cell 
+    };
 
     return(
         <div className='float-root grid grid-rows-9'>
         {createGrid(game).map((row, rowInd)=>(
             <div key={rowInd} className='grid grid-cols-9'> 
                 {row.map((num, ind)=>(
-                    <Cell key={ind} rowInd={rowInd} colInd={ind} num={num} handleSelectedCell={props.handleSelectedCell}/>
+                    <Cell key={ind} rowInd={rowInd} colInd={ind} num={num} handleSelectedCell={handleSelectedCell}/>
                 ))}
             </div>
             )

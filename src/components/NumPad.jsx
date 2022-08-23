@@ -2,16 +2,13 @@ import { useEffect } from 'react';
 import Num from './Num';
 
 
-
 const NumPad = () =>{
   
-    //onenter
-
     function handleOnClick(value){
         console.log(value);
     }
-
     //event listeners here
+
 
     const onEnter =(e)=>{
 
