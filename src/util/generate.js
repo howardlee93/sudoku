@@ -23,4 +23,4 @@ function generate(level){
 
 
 
-export default test;
+export default empty;

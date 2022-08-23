@@ -4,8 +4,7 @@ import test from '../util/generate';
 const Cell = ({num, status, handleSelectedCell, rowInd, colInd}) =>{
 
     const handleClick =()=>{
-        handleSelectedCell(num);
-        console.log(rowInd, colInd, test[rowInd][colInd]);
+        handleSelectedCell(num, rowInd, colInd );
     }
     // switch(charStatus){
     //     case 'correct':
@@ -24,7 +23,6 @@ const Cell = ({num, status, handleSelectedCell, rowInd, colInd}) =>{
 
     return(
         <div className='node' onClick= {handleClick}>
-            {/* <input type="text" size="1" value={num} onChange={()=>handleSelectedCell(num)}/> */}
             <p>{num}</p>
         </div>
     )
