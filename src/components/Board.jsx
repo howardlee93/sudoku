@@ -1,11 +1,9 @@
 import Cell from './Cell';
 import '../style/Grid.css';
 import { useState } from 'react';
-import { useEffect } from 'react';
 
 const Board = (props) =>{
 
-    const [selected, setSelected] = useState("");
     const [game, setGame] = useState(props.game);
     const createGrid = (game)=>{
         const grid = [];

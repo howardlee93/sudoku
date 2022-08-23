@@ -1,28 +1,35 @@
+import { useState } from 'react';
 import '../style/Grid.css';
-import test from '../util/generate';
 
-const Cell = ({num, status, handleSelectedCell, rowInd, colInd}) =>{
+const Cell = ({num, handleSelectedCell, rowInd, colInd}) =>{
+
+    const [status, setStatus] = useState('')
 
     const handleClick =()=>{
         handleSelectedCell(num, rowInd, colInd );
+        setStatus('current');
     }
-    // switch(charStatus){
-    //     case 'correct':
-    //         status = 'text-green-400';
-    //         break
-    //     // case 'present':
-    //     //     status = 'text-yellow-400';
-    //     //     break;
-    //     // case 'absent':
-    //     //     status = 'text-gray-400	';
-    //     //     break
-    //     default:
-    //         status = ''
-    // }
+    
+    let mode;
+    switch(status){
+        case 'correct':
+            mode = 'text-green-400';
+            break
+        case 'current':
+            mode = 'bg-slate-300';
+            break;
+        case 'past':
+            mode = 'text-gray-400';
+            break
+        default:
+            mode = ''
+    }
     //some useeffect
 
     return(
-        <div className='node' onClick= {handleClick}>
+        <div className={`node hover:bg-slate-300 active:bg-slate-700 
+            focus:outline-none focus:ring ${mode}`} 
+            onClick= {handleClick}>
             <p>{num}</p>
         </div>
     )

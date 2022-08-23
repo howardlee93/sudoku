@@ -1,15 +1,8 @@
-import { useEffect } from 'react';
 import Num from './Num';
-
 
 const NumPad = (props) =>{
   
     //event listeners here
-
-
-    const onEnter =(e)=>{
-
-    }
 
     return (
         <div className='float-root '>

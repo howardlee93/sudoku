@@ -7,16 +7,21 @@ import Modal from './components/Modal';
 import NumPad from './components/NumPad';
 
 import test from './util/generate';
-import empty from './util/generate';
+// import empty from './util/generate';
 
 const initialState = {
   selectedBoardVal: null,
   values: {},
   currentInput:'',
-  board: empty,
+  board: test,
   done: false,
   selectedRowIndex: null,
   selectedColIndex: null,
+  selectedStatus:[
+    'readonly',
+    'current',
+    'past'
+  ]
 }
 
 function App() {
@@ -41,15 +46,12 @@ function App() {
         }else{
             console.log(event.key, game.slice()[selected.row][selected.col]);
             setInput(event.key)
-            // .then(()=>{
-            //   if (input){
-                let newBoard = game.slice();
-                selected.posVal = input;
-                newBoard[selected.row][selected.col] = event.key;
-                setGame(newBoard);
-                console.log(game);
-              // }
-            // }); //switch to async
+            let newBoard = game.slice();
+            selected.posVal = input;
+            newBoard[selected.row][selected.col] = event.key;
+            setGame(newBoard);
+            console.log(game);
+            
         }
     }
     document.addEventListener("keyup", eventListener);
