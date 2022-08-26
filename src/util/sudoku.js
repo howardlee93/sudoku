@@ -50,3 +50,5 @@ function checkValid(arr){
 
     return true;
 }
+
+export default validate;

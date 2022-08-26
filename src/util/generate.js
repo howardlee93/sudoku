@@ -11,12 +11,23 @@ const test = [[1, 3, 2, 5, 4, 6, 9, 8, 7],
 const empty = Array(9).fill(null).map(() => Array(9).fill(0));
 
 
-
 const game = [];        
 const level = ['easy', 'medium', 'difficult'];
 
 
 function generate(level){
+        const digits ='123456789';
+        let numSize = 9;
+        let sqrtNum = Math.sqrt(numSize);
+        let missingDigits;
+
+        for (let row = 0; row < empty.length; row++){
+                for (let col = 0; col< empty[row].length; col++){
+                        empty[row][col] = digits[Math.random()*9] 
+                }
+        }
+
+        
 
 }
 
