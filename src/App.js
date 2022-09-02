@@ -20,7 +20,11 @@ const defaultState = {
   selectedColIndex: null,
 };
 
+Object.freeze(defaultState);
+
 const initialState = JSON.parse(JSON.stringify(defaultState));
+
+Object.freeze(initialState);
 
 function App() {
 
@@ -69,7 +73,7 @@ function App() {
       });
       setIsInitialRender(false);
     }
-  },[setIsInitialRender,game, input, selected]);
+  },[setIsInitialRender, game, input, selected]);
 
 
   const handleSelectedCell = ( cell, row, col) =>{

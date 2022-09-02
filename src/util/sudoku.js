@@ -44,6 +44,7 @@ function checkValid(arr){
     let hash = {};
 
     for (let i = 0; i < arr.length; i++){
+        if (arr[i] === 0) continue;
         if (!hash[arr[i]]) hash[arr[i]] = 1;
         else return false;
     }
@@ -51,4 +52,20 @@ function checkValid(arr){
     return true;
 }
 
-export default validate;
+
+/// second type of validation
+const rowSafe =()=>{
+    return true
+};
+
+const colSafe = () => {
+    return true;
+};
+
+const regionSafe = () => {
+
+}
+
+// export default validate;
+module.exports = validate;
+
