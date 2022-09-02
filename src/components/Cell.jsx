@@ -33,9 +33,6 @@ const Cell = ({num, handleSelectedCell, rowInd, colInd}) =>{
         default:
             numStatus = ''
     }
-
-
-
     //some useeffect
 
     return(

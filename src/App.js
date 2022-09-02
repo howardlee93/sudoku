@@ -72,7 +72,7 @@ function App() {
       });
       setIsInitialRender(false);
     }
-  },[setIsInitialRender, game, input, selected]);
+  },[isInitialRender, game, input, selected]);
 
 
   const handleSelectedCell = ( cell, row, col) =>{
@@ -96,7 +96,9 @@ function App() {
 
   const reset = async ()=> {
     //clear and generate game
+    const newGame = init();
     const boardtest = JSON.parse(JSON.stringify(defaultState));
+    Object.assign(boardtest, {board: newGame});
     let {board} = boardtest;
     let newBoard = board.slice();
 
