@@ -1,8 +1,5 @@
 //https://dev.to/dsasse07/generating-solving-sudoku-in-js-ruby-with-backtracking-4hm#full-code
 
-// import validate from './sudoku';
-const validate = require ('./sudoku');
-
 const digits = [1,2,3,4,5,6,7,8,9];
 const empty = Array(9).fill(null).map(() => Array(9).fill(0));
 let counter; 
@@ -130,10 +127,12 @@ function init(){
     // Clone the populated board and poke holes in it. 
     // Stored the removed values for clues
         let [removedVals, startingBoard] = pokeHoles( solvedBoard.map ( row => row.slice() ), 17)
-        console.log( [removedVals, startingBoard, solvedBoard, validate(solvedBoard)]);
+        // return [removedVals, startingBoard, solvedBoard];
+        return startingBoard;
+
     // }catch(error){
         // console.log(error);
     // }
 };
 
-init();
+export default init;

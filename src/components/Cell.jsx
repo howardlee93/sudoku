@@ -24,11 +24,23 @@ const Cell = ({num, handleSelectedCell, rowInd, colInd}) =>{
         default:
             mode = ''
     }
+
+    let numStatus;
+    switch(num){
+        case 0:
+            numStatus = 'bg-sky-400';
+            break;
+        default:
+            numStatus = ''
+    }
+
+
+
     //some useeffect
 
     return(
         <div className={`node hover:bg-slate-300 active:bg-slate-700 
-            focus:outline-none focus:ring ${mode}`} 
+            focus:outline-none focus:ring ${mode} ${numStatus}`} 
             onClick= {handleClick}>
             <p>{num}</p>
         </div>

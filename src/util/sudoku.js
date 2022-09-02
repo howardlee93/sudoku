@@ -51,21 +51,6 @@ function checkValid(arr){
 
     return true;
 }
-
-
-/// second type of validation
-const rowSafe =()=>{
-    return true
-};
-
-const colSafe = () => {
-    return true;
-};
-
-const regionSafe = () => {
-
-}
-
-// export default validate;
-module.exports = validate;
+export default validate;
+// module.exports = validate;
 

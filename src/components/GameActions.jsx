@@ -6,7 +6,8 @@ function GameActions(props){
         const {game} = props;
         console.log(game);
         if(validate(game)){
-            alert('you won!')
+            alert('you won!');
+            props.reset();
         }else{
             alert('there is error!');
         }

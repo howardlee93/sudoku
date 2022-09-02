@@ -7,20 +7,19 @@ import Modal from './components/Modal';
 import NumPad from './components/NumPad';
 import GameActions from './components/GameActions';
 
-import test from './util/generate';
-// import empty from './util/generate';
+// import test from './util/generate';
+import init from './util/generation';
 
 const defaultState = {
   selectedBoardVal: null,
   values: {},
   currentInput:'',
-  board: test,
+  board: init(),
   done: false,
   selectedRowIndex: null,
   selectedColIndex: null,
 };
 
-Object.freeze(defaultState);
 
 const initialState = JSON.parse(JSON.stringify(defaultState));
 
