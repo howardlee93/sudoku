@@ -1,40 +1,64 @@
-const test = [[1, 3, 2, 5, 4, 6, 9, 8, 7],
-        [4, 6, 5, 8, 7, 9, 3, 2, 1],
-        [7, 9, 8, 2, 1, 3, 6, 5, 4],
-        [9, 2, 1, 4, 3, 5, 8, 7, 6],
-        [3, 5, 4, 7, 6, 8, 2, 1, 9],
-        [6, 8, 7, 1, 9, 2, 5, 4, 3],
-        [5, 7, 6, 9, 8, 1, 4, 3, 2],
-        [2, 4, 3, 6, 5, 7, 1, 9, 8],
-        [8, 1, 9, 3, 2, 4, 7, 6, 5]];
-
-const empty = Array(9).fill(null).map(() => Array(9).fill(0));
-
-//https://github.com/robatron/sudoku.js/blob/master/sudoku.js
-const game = [];        
-const level = ['easy', 'medium', 'difficult'];
+//test.js
+// const validate = require ('./sudoku');
+import validate from './sudoku';
 
 const digits = [1,2,3,4,5,6,7,8,9];
+const empty = Array(9).fill(null).map(() => Array(9).fill(0));
+let counter;
 
-//shuffle
+const shuffle = (nums)=>{
+    let digitCopy = [...nums];
+    for (let i = digitCopy.length - 1; i >= 0; i--){
+        let randInd = Math.floor(Math.random() * i +1);
+        [digitCopy[i], digitCopy[randInd]] = [digitCopy[randInd], digitCopy[i]]
+    }
+    return digitCopy;
+};
 
 
-function generate(level){
-        let numSize = 9;
-        let sqrtNum = Math.sqrt(numSize);
-        let missingDigits;
-
-        for (let row = 0; row < empty.length; row++){
-                for (let col = 0; col< empty[row].length; col++){
-                        empty[row][col] = digits[Math.random()*9] 
-                }
+const findNextCell = grid => {
+    let emptyCell= {
+        i:'',
+        j:''
+    };
+    for (let i = 0; i < grid.length; i++){
+        for (let j = 0; j < grid[0].length; j++){
+            let gridCell = grid[i][j];
+            if(gridCell === 0){
+                console.log(i,j)
+                emptyCell.i = i;
+                emptyCell.j = j;
+                return emptyCell;
+            }
         }
+    }
+    return false;
+};   
 
-        
+const fillBoard = (board) =>{
+    const cell = findNextCell(board);
+    if (!cell) return board;
 
+    for (const num of shuffle(digits)){
+        let shallowBoard = board.map(row => row.slice()); // deep copy issue and also do we want to waste memory like this?
+        shallowBoard[cell.i][cell.j] = num;
+        console.log(shallowBoard);
+        counter++;
+        if ( counter > 20_000_000 ) throw new Error ("Recursion Timeout");
+        if (validate(shallowBoard)){
+            board[cell.i][cell.j] = num;
+            if (fillBoard(board)) return board;
+            board[cell.i][cell.j] = 0;                     
+        }
+    }
+    return false;
 }
 
+function init(){
+    counter = 0;
+    let solvedBoard = fillBoard(empty);
+    return solvedBoard;
+}
 
-
-
-export default test;
+// init();
+export default init;

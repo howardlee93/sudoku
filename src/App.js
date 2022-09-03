@@ -8,7 +8,7 @@ import NumPad from './components/NumPad';
 import GameActions from './components/GameActions';
 
 // import test from './util/generate';
-import init from './util/generation';
+import init from './util/generate';
 
 const defaultState = {
   selectedBoardVal: null,
