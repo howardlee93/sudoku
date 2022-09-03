@@ -51,6 +51,37 @@ function checkValid(arr){
 
     return true;
 }
-export default validate;
-// module.exports = validate;
+// export default validate;
+module.exports = validate;
 
+
+
+// const rowSafe = (board, emptyCell, num)=>{
+//     return board[emptyCell.rowInd].indexOf(num) === -1;
+// };
+
+// const colSafe = (board, emptyCell, num) => {
+//     return !board.some(row => row[emptyCell.colInd] === num);
+
+// };
+
+// const subGridCheck = (board, emptyCell, num) =>{
+//     let subGridStartRow = emptyCell.rowInd - (emptyCell.rowInd % 3);
+//     let subGridStartCol= emptyCell.colInd - (emptyCell.colInd % 3);
+//     let safe = true;
+    
+//     for (let boxRow of [0,1,2]){
+//         for( let boxCol of [0,1,2]){
+//             if (board[subGridStartRow + boxRow][subGridStartCol + boxCol] === num){
+//                 safe = false;
+//             }
+//         }
+//     };
+//     return safe;
+// }
+
+// const checkValid =( board, emptyCell, num)=> {
+//     return rowSafe(board, emptyCell, num)
+//     && colSafe(board, emptyCell, num) 
+//     && subGridCheck (board, emptyCell, num)
+// }

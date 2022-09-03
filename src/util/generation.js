@@ -1,5 +1,6 @@
 //https://dev.to/dsasse07/generating-solving-sudoku-in-js-ruby-with-backtracking-4hm#full-code
 
+const validate = require('./sudoku');
 const digits = [1,2,3,4,5,6,7,8,9];
 const empty = Array(9).fill(null).map(() => Array(9).fill(0));
 let counter; 
@@ -23,13 +24,15 @@ const shuffle = (nums)=>{
 const generate = (board) =>{
 
     const emptyCell = nextEmpty(board);
-    // console.log(emptyCell);
     if (!emptyCell) return board;
    
     for (const num of shuffle(digits)){
         counter++;
+        let shallowBoard = board.map(row => row.slice());
+        shallowBoard[emptyCell.rowInd][emptyCell.colInd] = num;
+        console.log(shallowBoard);
         if ( counter > 20_000_000 ) throw new Error ("Recursion Timeout");
-        if (checkValid(board, emptyCell, num)){
+        if (validate(shallowBoard)){
             board[emptyCell.rowInd][emptyCell.colInd] = num;
             if (generate(board)) return board;
             board[emptyCell.rowInd][emptyCell.colInd] = 0;
@@ -42,19 +45,22 @@ const generate = (board) =>{
 //use hash to remember row and col index
 //scan thru array
 //find next zero 
-const nextEmpty = (board) =>{
-    const emptyCell = {rowInd: "", colInd:""};
-
-    board.forEach( (row, rowInd)=>{
-        if (emptyCell.colInd !== "") return;
-        let firstZero = row.find(col => col === 0);
-        if (firstZero === undefined) return;
-        emptyCell.rowInd = rowInd;
-        emptyCell.colInd = row.indexOf(firstZero);
-
-    });
-
-    if (emptyCell.colInd !=="") return emptyCell;
+const nextEmpty = (grid) =>{
+    let emptyCell= {
+        rowInd:'',
+        colInd:''
+    };
+    for (let i = 0; i < grid.length; i++){
+        for (let j = 0; j < grid[0].length; j++){
+            let gridCell = grid[i][j];
+            if(gridCell === 0){
+                console.log(i,j)
+                emptyCell.rowInd = i;
+                emptyCell.colInd = j;
+                return emptyCell;
+            }
+        }
+    }
     return false;
 }
 
@@ -89,50 +95,23 @@ const pokeHoles = (board, difficulty) =>{
 };
 
 
-const rowSafe = (board, emptyCell, num)=>{
-    return board[emptyCell.rowInd].indexOf(num) === -1;
-};
-
-const colSafe = (board, emptyCell, num) => {
-    return !board.some(row => row[emptyCell.colInd] === num);
-
-};
-
-const subGridCheck = (board, emptyCell, num) =>{
-    let subGridStartRow = emptyCell.rowInd - (emptyCell.rowInd % 3);
-    let subGridStartCol= emptyCell.colInd - (emptyCell.colInd % 3);
-    let safe = true;
-    
-    for (let boxRow of [0,1,2]){
-        for( let boxCol of [0,1,2]){
-            if (board[subGridStartRow + boxRow][subGridStartCol + boxCol] === num){
-                safe = false;
-            }
-        }
-    };
-    return safe;
-}
-
-const checkValid =( board, emptyCell, num)=> {
-    return rowSafe(board, emptyCell, num)
-    && colSafe(board, emptyCell, num) 
-    && subGridCheck (board, emptyCell, num)
-}
 
 function init(){
     // try{
         counter = 0;
         let solvedBoard = generate(empty);  
-        // console.log(solvedBoard)
+        console.log(solvedBoard)
     // Clone the populated board and poke holes in it. 
     // Stored the removed values for clues
-        let [removedVals, startingBoard] = pokeHoles( solvedBoard.map ( row => row.slice() ), 17)
+        // let [removedVals, startingBoard] = pokeHoles( solvedBoard.map ( row => row.slice() ), 17)
         // return [removedVals, startingBoard, solvedBoard];
-        return startingBoard;
+        // return startingBoard;
 
     // }catch(error){
         // console.log(error);
     // }
 };
 
-export default init;
+init();
+
+// export default init;
