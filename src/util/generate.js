@@ -1,9 +1,14 @@
 //test.js
-// const validate = require ('./sudoku');
-import validate from './sudoku';
+const validate = require ('./sudoku');
+// import validate from './sudoku';
 
 const digits = [1,2,3,4,5,6,7,8,9];
 const empty = Array(9).fill(null).map(() => Array(9).fill(0));
+const difficulty = {
+    'easy': 17,
+    'medium': 23,
+    'hard': 34
+}
 let counter;
 
 const shuffle = (nums)=>{
@@ -14,7 +19,6 @@ const shuffle = (nums)=>{
     }
     return digitCopy;
 };
-
 
 const findNextCell = grid => {
     let emptyCell= {
@@ -52,12 +56,32 @@ const fillBoard = (board) =>{
         }
     }
     return false;
+};
+
+const pokeHoles = (board, difficulty) =>{
+    let removed = [];
+
+    while (removed.length < difficulty){
+        let randomRowInd = Math.floor(Math.random()* 8) ;
+        let randomColInd = Math.floor(Math.random()* 8);
+
+        //check if that particular combo in array
+        if (removed.indexOf({randomRowInd, randomColInd}) === -1){
+            board[randomRowInd][randomColInd] = 0;
+            removed.push({randomRowInd, randomColInd});
+        }
+    }
+   return board;
 }
 
-function init(){
+function init(level = 'easy'){
     counter = 0;
     let solvedBoard = fillBoard(empty);
-    return solvedBoard;
+    let startingBoard = pokeHoles(solvedBoard, difficulty[level] )
+    //poke holes 
+    console.log( startingBoard);
+    return startingBoard;
+
 }
 
 // init();
