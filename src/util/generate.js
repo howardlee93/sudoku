@@ -80,7 +80,7 @@ function init(level = 'easy'){
     let startingBoard = pokeHoles(solvedBoard, difficulty[level] )
     //poke holes 
     console.log( startingBoard);
-    return startingBoard;
+    return {startingBoard, solvedBoard};
 
 }
 

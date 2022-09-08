@@ -11,10 +11,11 @@ import GameActions from './components/GameActions';
 import init from './util/generate';
 
 const defaultState = {
+  completedBoard: init().solvedBoard,
   selectedBoardVal: null,
   values: {},
   currentInput:'',
-  board: init(),
+  board: init().startingBoard,
   done: false,
   selectedRowIndex: null,
   selectedColIndex: null,
@@ -102,7 +103,7 @@ function App() {
 
   const reset = async ()=> {
     //clear and generate game
-    const newGame = init();
+    const newGame = init().startingBoard;
     const boardtest = JSON.parse(JSON.stringify(defaultState));
     Object.assign(boardtest, {board: newGame});
     let {board} = boardtest;
@@ -118,9 +119,19 @@ function App() {
     // });  
   };
 
+
+  const handleHint = () =>{
+    if (selected.posVal === 0){
+      // let newBoard = game.slice();
+      // newBoard[selected.row][selected.col] = init().solvedBoard[selected.row][selected.col];
+      console.log(init(difficulty).solvedBoard);
+
+    }
+  }
+
   const setGameDifficulty = (level)=>{
     setDifficulty(level);
-    let newGame = init(level);
+    let newGame = init(level).startingBoard;
     const boardtest = JSON.parse(JSON.stringify(defaultState));
     Object.assign(boardtest, {board: newGame});
     let {board} = boardtest;
@@ -147,7 +158,7 @@ function App() {
         </aside>
         </div>
         <footer className="flex justify-center">
-          <GameActions game={game} reset={reset}/>
+          <GameActions game={game} reset={reset} handleHint={handleHint}/>
         </footer>
       </main>
       <Footer/>
