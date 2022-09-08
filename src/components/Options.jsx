@@ -1,22 +1,18 @@
-import { useState } from "react";
 
-
-const Options = () =>{
-
-    const [difficulty, setDifficulty] = useState("easy");
+const Options = (props) =>{
 
     return(
         <ul>
-            <button className="m-3"
-                onClick={()=>setDifficulty("easy")}
+            <button className="m-3 active:bg-slate-500"
+                onClick={()=> props.setGameDifficulty("easy")}
             >easy</button>
 
-            <button className="m-3"
-                onClick={()=>setDifficulty("medium")}
+            <button className="m-3 active:bg-slate-500"
+                onClick={()=> props.setGameDifficulty("medium")}
             >medium</button>
 
-            <button className="m-3"
-                onClick={()=>setDifficulty("hard")}
+            <button className="m-3 active:bg-slate-500"
+                onClick={()=> props.setGameDifficulty("hard")}
             >hard</button>
 
         </ul>

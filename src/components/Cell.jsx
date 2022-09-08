@@ -7,7 +7,9 @@ const Cell = ({num, handleSelectedCell, rowInd, colInd}) =>{
 
     const handleClick =()=>{
         handleSelectedCell(num, rowInd, colInd );
-        setStatus('current');
+        if (num === 0){
+            setStatus('current');
+        }
     }
     
     let mode;

@@ -32,6 +32,7 @@ function App() {
   const [game, setGame] = useState([]);
   const [input, setInput] = useState("");
   const [selected, setSelected] = useState({});
+  const [difficulty, setDifficulty] = useState('');
 
   useEffect(()=>{ 
 
@@ -43,13 +44,14 @@ function App() {
             console.log(event.key);
         }else{
             console.log(event.key, game.slice()[selected.row][selected.col]);
-            setInput(event.key)
-            let newBoard = game.slice();
-            selected.posVal = input;
-            newBoard[selected.row][selected.col] = parseInt(event.key);
-            setGame(newBoard);
-            console.log(game);
-            
+            // if (selected.posVal === 0){
+              setInput(event.key)
+              let newBoard = game.slice();
+              selected.posVal = input;
+              newBoard[selected.row][selected.col] = parseInt(event.key);
+              setGame(newBoard);
+              console.log(game);
+            // }
         }
     }
     document.addEventListener("keyup", eventListener);
@@ -86,12 +88,16 @@ function App() {
   };
 
   const handleOnClick =(val) =>{
-    console.log(val);
-    setInput(val);
-    let newBoard = game.slice();
-    selected.posVal = input;
-    newBoard[selected.row][selected.col] = parseInt(val);
-    setGame(newBoard);
+    // if (selected.posVal === 0){
+      console.log(val);
+      setInput(val);
+      let newBoard = game.slice();
+      selected.posVal = input;
+      newBoard[selected.row][selected.col] = parseInt(val);
+      setGame(newBoard);
+    // }else{
+    //   return;
+    // }
   };
 
   const reset = async ()=> {
@@ -112,13 +118,24 @@ function App() {
     // });  
   };
 
+  const setGameDifficulty = (level)=>{
+    setDifficulty(level);
+    let newGame = init(level);
+    const boardtest = JSON.parse(JSON.stringify(defaultState));
+    Object.assign(boardtest, {board: newGame});
+    let {board} = boardtest;
+    let newBoard = board.slice();
+    console.log(newBoard);
+    setGame(newBoard);
+  }
+
   return (
     <div className="App">
       <header>
         <h1 className="mt-1 text-lg font-semibold" onClick={()=>setOpen(!open)}>Sudoku</h1>
         <p onClick={()=>setOpen(!open)}> Instructions</p>
         <Modal open={open} onClick={()=>setOpen(!open)}/>
-        <Options/>
+        <Options setGameDifficulty={setGameDifficulty}/>
       </header>
 
       <main className="flex justify-center flex-col">
