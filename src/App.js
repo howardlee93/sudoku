@@ -127,6 +127,14 @@ function App() {
       console.log(init(difficulty).solvedBoard);
 
     }
+  };
+
+  const handleRedo = ()=>{
+    let newBoard = game.slice();
+    selected.posVal = input;
+    newBoard[selected.row][selected.col] = 0;
+    setGame(newBoard);
+
   }
 
   const setGameDifficulty = (level)=>{
@@ -158,7 +166,9 @@ function App() {
         </aside>
         </div>
         <footer className="flex justify-center">
-          <GameActions game={game} reset={reset} handleHint={handleHint}/>
+          <GameActions game={game} reset={reset} handleHint={handleHint}
+            handleRedo={handleRedo}
+          />
         </footer>
       </main>
       <Footer/>
