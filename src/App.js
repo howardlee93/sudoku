@@ -102,13 +102,16 @@ function App() {
   const reset = async ()=> {
     //clear and generate game
     const newGame = init().startingBoard;
+    const newSolvedGame = init().solvedBoard;
     const boardtest = JSON.parse(JSON.stringify(defaultState));
-    Object.assign(boardtest, {board: newGame});
-    let {board} = boardtest;
+    Object.assign(boardtest, {board: newGame, completedBoard: newSolvedGame});
+    let {board, completedBoard} = boardtest;
     let newBoard = board.slice();
+    let newSolvedBoard = completedBoard.slice();
+    console.log(newBoard, newSolvedBoard);
 
-    console.log(newBoard);
     setGame(newBoard);
+    setSolved(newSolvedBoard);
      
   };
 
@@ -130,12 +133,16 @@ function App() {
   const setGameDifficulty = (level)=>{
     setDifficulty(level);
     let newGame = init(level).startingBoard;
+    let newSolved = init(level).solvedBoard;
+
     const boardtest = JSON.parse(JSON.stringify(defaultState));
-    Object.assign(boardtest, {board: newGame});
-    let {board} = boardtest;
+    Object.assign(boardtest, {board: newGame, completedBoard:newSolved});
+    let {board, completedBoard} = boardtest;
     let newBoard = board.slice();
-    console.log(newBoard);
+    let newSolvedBoard = completedBoard.slice();
+    console.log(newBoard, newSolvedBoard);
     setGame(newBoard);
+    setSolved(newSolvedBoard);
   }
 
   return (
@@ -144,7 +151,7 @@ function App() {
         <h1 className="mt-1 text-lg font-semibold" onClick={()=>setOpen(!open)}>Sudoku</h1>
         <p onClick={()=>setOpen(!open)}> Instructions</p>
         <Modal open={open} onClick={()=>setOpen(!open)}/>
-        <Options setGameDifficulty={setGameDifficulty}/>
+        <Options setGameDifficulty={setGameDifficulty} />
       </header>
 
       <main className="flex justify-center flex-col">
