@@ -115,6 +115,7 @@ function App() {
   const handleHint = () =>{
     console.log(solved);
     console.log(solved[selected.row][selected.col]);
+    alert(solved[selected.row][selected.col])
   };
 
 
