@@ -55,7 +55,6 @@ function checkValid(arr){
 module.exports = validate;
 
 
-
 // const rowSafe = (board, emptyCell, num)=>{
 //     return board[emptyCell.rowInd].indexOf(num) === -1;
 // };
@@ -80,8 +79,10 @@ module.exports = validate;
 //     return safe;
 // }
 
-// const checkValid =( board, emptyCell, num)=> {
+// const checkValidity =( board, emptyCell, num)=> {
 //     return rowSafe(board, emptyCell, num)
 //     && colSafe(board, emptyCell, num) 
 //     && subGridCheck (board, emptyCell, num)
 // }
+
+// module.exports = checkValidity;

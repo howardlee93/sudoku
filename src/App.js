@@ -7,7 +7,6 @@ import Modal from './components/Modal';
 import NumPad from './components/NumPad';
 import GameActions from './components/GameActions';
 
-// import test from './util/generate';
 import init from './util/generate';
 
 const defaultState = {
@@ -27,13 +26,14 @@ const initialState = JSON.parse(JSON.stringify(defaultState));
 Object.freeze(initialState);
 
 function App() {
-
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [open, setOpen] = useState(false);
   const [game, setGame] = useState([]);
   const [input, setInput] = useState("");
   const [selected, setSelected] = useState({});
   const [difficulty, setDifficulty] = useState('');
+  const [solved, setSolved] = useState([]);
+
 
   useEffect(()=>{ 
 
@@ -67,6 +67,7 @@ function App() {
 
     if (isInitialRender){
       setGame(initialState.board);
+      setSolved(initialState.completedBoard);
       setInput(initialState.currentInput);
       setSelected({
         posVal: initialState.selectedBoardVal,
@@ -89,16 +90,13 @@ function App() {
   };
 
   const handleOnClick =(val) =>{
-    // if (selected.posVal === 0){
       console.log(val);
       setInput(val);
       let newBoard = game.slice();
       selected.posVal = input;
       newBoard[selected.row][selected.col] = parseInt(val);
       setGame(newBoard);
-    // }else{
-    //   return;
-    // }
+    
   };
 
   const reset = async ()=> {
@@ -111,23 +109,14 @@ function App() {
 
     console.log(newBoard);
     setGame(newBoard);
-    // setInput( ...defaultState.currentInput);
-    // setSelected({
-    //   posVal: defaultState.selectedBoardVal,
-    //   row: defaultState.selectedRowIndex,
-    //   col: defaultState.selectedColIndex
-    // });  
+     
   };
-
 
   const handleHint = () =>{
-    if (selected.posVal === 0){
-      // let newBoard = game.slice();
-      // newBoard[selected.row][selected.col] = init().solvedBoard[selected.row][selected.col];
-      console.log(init(difficulty).solvedBoard);
-
-    }
+    console.log(solved);
+    console.log(solved[selected.row][selected.col]);
   };
+
 
   const handleRedo = ()=>{
     let newBoard = game.slice();

@@ -29,7 +29,7 @@ const findNextCell = grid => {
         for (let j = 0; j < grid[0].length; j++){
             let gridCell = grid[i][j];
             if(gridCell === 0){
-                console.log(i,j)
+                // console.log(i,j)
                 emptyCell.i = i;
                 emptyCell.j = j;
                 return emptyCell;
@@ -46,7 +46,7 @@ const fillBoard = (board) =>{
     for (const num of shuffle(digits)){
         let shallowBoard = board.map(row => row.slice()); // deep copy issue and also do we want to waste memory like this?
         shallowBoard[cell.i][cell.j] = num;
-        console.log(shallowBoard);
+        // console.log(shallowBoard);
         counter++;
         if ( counter > 20_000_000 ) throw new Error ("Recursion Timeout");
         if (validate(shallowBoard)){
@@ -77,10 +77,12 @@ const pokeHoles = (board, difficulty) =>{
 function init(level = 'easy'){
     counter = 0;
     let solvedBoard = fillBoard(empty);
-    let startingBoard = pokeHoles(solvedBoard, difficulty[level] )
+    let startingBoard = pokeHoles(solvedBoard.map( row => row.slice()), difficulty[level] )
     //poke holes 
-    console.log( startingBoard);
-    return {startingBoard, solvedBoard};
+    console.log( solvedBoard);
+    // console.log( "starting:" + startingBoard);
+
+    return { startingBoard, solvedBoard};
 
 }
 

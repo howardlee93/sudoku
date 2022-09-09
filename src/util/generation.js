@@ -30,7 +30,7 @@ const generate = (board) =>{
         counter++;
         let shallowBoard = board.map(row => row.slice());
         shallowBoard[emptyCell.rowInd][emptyCell.colInd] = num;
-        console.log(shallowBoard);
+        // console.log(shallowBoard);
         if ( counter > 20_000_000 ) throw new Error ("Recursion Timeout");
         if (validate(shallowBoard)){
             board[emptyCell.rowInd][emptyCell.colInd] = num;
@@ -54,7 +54,7 @@ const nextEmpty = (grid) =>{
         for (let j = 0; j < grid[0].length; j++){
             let gridCell = grid[i][j];
             if(gridCell === 0){
-                console.log(i,j)
+                // console.log(i,j)
                 emptyCell.rowInd = i;
                 emptyCell.colInd = j;
                 return emptyCell;
@@ -112,6 +112,6 @@ function init(){
     // }
 };
 
-// init();
+init();
 
-export default init;
+// export default init;
