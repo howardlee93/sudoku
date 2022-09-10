@@ -45,14 +45,14 @@ function App() {
             console.log(event.key);
         }else{
             console.log(event.key, game.slice()[selected.row][selected.col]);
-            // if (selected.posVal === 0){
+            if (selected.posVal === 0){
               setInput(event.key)
               let newBoard = game.slice();
               selected.posVal = input;
               newBoard[selected.row][selected.col] = parseInt(event.key);
               setGame(newBoard);
               console.log(game);
-            // }
+            }
         }
     }
     document.addEventListener("keyup", eventListener);
@@ -90,13 +90,14 @@ function App() {
   };
 
   const handleOnClick =(val) =>{
+    if (selected.posVal === 0){
       console.log(val);
       setInput(val);
       let newBoard = game.slice();
       selected.posVal = input;
       newBoard[selected.row][selected.col] = parseInt(val);
       setGame(newBoard);
-    
+    }
   };
 
   const reset = async ()=> {
